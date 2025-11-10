@@ -14,9 +14,7 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 /**
- * SpringSecurityConfiguration
- * ---------------------------
- * This class configures the Spring Security settings for the application.
+ * SpringSecurityConfiguration - configures the Spring Security settings for the application.
  *
  * It defines:
  *  - How users are authenticated (here: in-memory)
@@ -24,23 +22,12 @@ import org.springframework.security.web.SecurityFilterChain;
  *  - Authorization rules for HTTP requests
  *  - Login form handling and basic web security features
  *
- * Annotated with @Configuration so Spring can detect and load it at startup.
  */
+
 @Configuration
 public class SpringSecurityConfiguration {
 
-    // ===========================================================
-    // 🔹 1. USER DETAILS MANAGEMENT
-    // ===========================================================
-
-    /**
-     * Defines an in-memory user store with predefined users.
-     *
-     * In a production app, users would normally come from a database
-     * or LDAP, but for testing and demos, an in-memory setup is quick and easy.
-     *
-     * @return an InMemoryUserDetailsManager containing predefined users
-     */
+    // User Details Management - Defines an in-memory user store with predefined users.
     @Bean
     public InMemoryUserDetailsManager createUserDetailsManager() {
 
@@ -51,13 +38,7 @@ public class SpringSecurityConfiguration {
         return new InMemoryUserDetailsManager(userDetails1, userDetails2);
     }
 
-    /**
-     * Helper method to create a user with encoded password.
-     * 
-     * @param username name of the user
-     * @param password plaintext password to encode
-     * @return a fully configured UserDetails object
-     */
+    // Helper method to create a user with encoded password.
     private UserDetails createNewUser(String username, String password) {
 
         // PasswordEncoder lambda to encrypt plain text passwords
@@ -76,39 +57,14 @@ public class SpringSecurityConfiguration {
         return userDetails;
     }
 
-    // ===========================================================
-    // 🔹 2. PASSWORD ENCODING
-    // ===========================================================
-
-    /**
-     * Defines a BCryptPasswordEncoder bean to securely hash passwords.
-     *
-     * BCrypt is a strong one-way hashing algorithm that automatically
-     * adds a salt, making passwords resistant to brute-force attacks.
-     *
-     * @return PasswordEncoder instance (BCrypt)
-     */
+    // Password Encoding - Defines a BCryptPasswordEncoder bean to securely hash passwords.
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-    // ===========================================================
-    // 🔹 3. HTTP SECURITY CONFIGURATION
-    // ===========================================================
 
-    /**
-     * Configures how HTTP requests are secured.
-     * 
-     * - Requires authentication for all endpoints
-     * - Enables form-based login (auto-generated login page)
-     * - Disables CSRF for simplicity (needed if using H2 or testing)
-     * - Allows use of frames (for H2 console access)
-     *
-     * @param http the HttpSecurity builder
-     * @return a configured SecurityFilterChain
-     * @throws Exception in case of configuration errors
-     */
+    // HTTP Security Configuration - Configures how HTTP requests are secured.
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
