@@ -2,7 +2,7 @@
 	<div class="collapse navbar-collapse">
 		<ul class="navbar-nav">
 			<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-			<li class="nav-item"><a class="nav-link" href="/list-todos">Skills</a></li>
+			<li class="nav-item"><a class="nav-link" href="list-skills">Skills</a></li>
 		</ul>
 	</div>
 	<ul class="navbar-nav">

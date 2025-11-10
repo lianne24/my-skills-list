@@ -1,6 +1,8 @@
 package com.springboot.my_skills_list.skill;
 
 import java.time.LocalDate;
+
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -68,13 +70,11 @@ public class Skill {
     public boolean isDone() { return done; }
     public void setDone(boolean done) { this.done = done; }
 
+	@Override
+	public String toString() {
+		return "Skill [id=" + id + ", username=" + username + ", description=" + description
+				+ ", targetDate=" + targetDate + ", done=" + done + "]";
+	}
 
-    @Override
-    public String toString() {
-        return "Skill [id=" + id + 
-               ", username=" + username + 
-               ", description=" + description + 
-               ", targetDate=" + targetDate + 
-               ", done=" + done + "]";
-    }
+
 }
