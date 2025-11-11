@@ -1,0 +1,46 @@
+version: "3.8"
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: skills-mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: skills
+      MYSQL_USER: skills-user
+      MYSQL_PASSWORD: skillspassword
+      MYSQL_ROOT_PASSWORD: skillspassword
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    ports:
+      - "3306:3306"   # optional
+    volumes:
+      - db-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-uroot", "-pskillspassword"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+
+  app:
+    container_name: my-skills-list
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      SERVER_PORT: 8080
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/skills?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: skills-user
+      SPRING_DATASOURCE_PASSWORD: skillspassword
+      SPRING_DATASOURCE_HIKARI_INITIALIZATION_FAIL_TIMEOUT: "0"
+      # For dev convenience; remove in prod
+      #SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    ports:
+      - "8080:8080"
+
+volumes:
+  db-data:

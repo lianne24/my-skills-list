@@ -32,8 +32,8 @@ public class SpringSecurityConfiguration {
     public InMemoryUserDetailsManager createUserDetailsManager() {
 
         // Create two demo users with usernames and passwords
-        UserDetails userDetails1 = createNewUser("Lia", "pass");
-        UserDetails userDetails2 = createNewUser("Leo", "pass");
+        UserDetails userDetails1 = createNewUser("lia", "pass");
+        UserDetails userDetails2 = createNewUser("leo", "pass");
 
         return new InMemoryUserDetailsManager(userDetails1, userDetails2);
     }
