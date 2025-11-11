@@ -1,6 +1,7 @@
 My Skills List — Spring Boot + JSP + MySQL (Dockerized)
 
 #######################################################
+
 Summary
 My Skills List is a Spring Boot web application that allows users to log in and manage skill data using a clean JSP interface and a MySQL database.
 
@@ -11,6 +12,7 @@ The project demonstrates:
 - Full Docker setup for easy build and deployment
 
 #######################################################
+
 Tech Stack
 - Java 17
 - Spring Boot 3.x
@@ -21,11 +23,13 @@ Tech Stack
 - Docker + Docker Compose
 
 #######################################################
+
 Project Structure
 
 <img width="428" height="332" alt="image" src="https://github.com/user-attachments/assets/5c138ee7-63bb-4df9-9724-c4cd3e7b0348" />
 
 #######################################################
+
 Running with Docker
 > docker compose build --no-cache
 > docker compose up -d
@@ -43,6 +47,7 @@ docker compose down
 docker compose down -v
 
 #######################################################
+
 Docker Setup Summary
 
 Dockerfile:
