@@ -34,8 +34,9 @@ public class SpringSecurityConfiguration {
         // Create two demo users with usernames and passwords
         UserDetails userDetails1 = createNewUser("lia", "pass");
         UserDetails userDetails2 = createNewUser("leo", "pass");
+        UserDetails userDetails3 = createNewUser("skills-user", "skillspassword");
 
-        return new InMemoryUserDetailsManager(userDetails1, userDetails2);
+        return new InMemoryUserDetailsManager(userDetails1, userDetails2, userDetails3);
     }
 
     // Helper method to create a user with encoded password.
